@@ -28,8 +28,6 @@ public class ResultActivity extends AppCompatActivity {
         // we have to populate this...
         CustomListView newList = new CustomListView(this,getData);
 
-
-
         ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(
                 getApplicationContext(),
