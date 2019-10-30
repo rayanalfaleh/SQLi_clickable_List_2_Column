@@ -12,12 +12,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {
+    //DBHelper mydb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
         ListView resList= (ListView) findViewById(R.id.listView);
+        final DBHelper mydb = new DBHelper(this);
 
         ArrayList<String> getData
             =getIntent().getExtras().getStringArrayList("fetchAll");
@@ -40,14 +43,15 @@ public class ResultActivity extends AppCompatActivity {
         // make the list clickable
         resList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /* insert the delete by ID method
-                 * if deleteContact( id) ==1
-                 * deleteContact(Long.toInteger(id));
-                 */
-
-                /*When clicked, show a toast with the TextView text or do whatever you need*/
-                Toast.makeText(getApplicationContext(),
-                        ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                String getName = ((TextView) view).getText().toString();
+                if( mydb.deleteContactByName(getName) == 1){
+                    Toast.makeText(getApplicationContext(),
+                            "Record DELETED", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),
+                            "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

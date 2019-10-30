@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "MyDBName.db";
@@ -83,6 +84,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete("contacts",
                 "id = ? ",
                 new String[] { Integer.toString(id) });
+    }
+
+    public Integer deleteContactByName (String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Log.v("georgeLog","Calling cursor");
+        //Cursor res =  db.rawQuery( "select * from contacts where name="+name+"", null );
+        Log.v("georgeLog","Cursor returned");
+        return db.delete("contacts",
+                "name = ? ",
+                new String[] { name });
     }
 
     public ArrayList<String> getAllContacts() {
