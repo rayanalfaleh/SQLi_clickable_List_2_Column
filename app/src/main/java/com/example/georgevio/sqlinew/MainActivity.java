@@ -14,9 +14,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+//George
     DBHelper mydb;
-
+int s;
     Button bttnshow1;
     Button bttnshowall;
     Button bttnadd;
