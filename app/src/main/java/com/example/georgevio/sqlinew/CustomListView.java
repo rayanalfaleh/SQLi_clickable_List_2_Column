@@ -44,6 +44,8 @@ public class CustomListView {
 
             holder.FirstText = (TextView) convertView.findViewById(R.id.FirstText);
             holder.SecondText = (TextView) convertView.findViewById(R.id.SecondText);
+            holder.ThirdText = (TextView) convertView.findViewById(R.id.ThirdText);
+            holder.FourthText = (TextView) convertView.findViewById(R.id.FourthText);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -58,5 +60,7 @@ public class CustomListView {
     static class ViewHolder {
         TextView FirstText;
         TextView SecondText;
+        TextView ThirdText;
+        TextView FourthText;
     }
 }

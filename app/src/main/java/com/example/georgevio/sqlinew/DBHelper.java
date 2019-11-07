@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table contacts " +
-                        "(id integer primary key, name text,phone text,email text)"//, street text,place text)"
+                        "(id integer primary key, name text,phone text,email text,street text)"//, street text,place text)"
         );
     }
 
@@ -42,13 +42,13 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertContact  (String name, String phone, String email){//, String street,String place)
+    public boolean insertContact  (String name, String phone, String email, String street){//, String street,String place)
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("phone", phone);
         contentValues.put("email", email);
-        //contentValues.put("street", street);
+        contentValues.put("street", street);
         //contentValues.put("place", place);
         db.insert("contacts", null, contentValues);
         return true;
@@ -109,5 +109,10 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         return array_list;
+    }
+    public Cursor getListContents() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * FROM " + CONTACTS_TABLE_NAME, null);
+        return data;
     }
 }
